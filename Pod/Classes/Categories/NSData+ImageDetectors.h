@@ -11,6 +11,7 @@
 @interface NSData (PINImageDetectors)
 
 - (BOOL)pin_isGIF;
+- (BOOL)pin_isBPG;
 #ifdef PIN_WEBP
 - (BOOL)pin_isWebP;
 #endif

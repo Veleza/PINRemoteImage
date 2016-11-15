@@ -10,6 +10,8 @@
 
 #import <ImageIO/ImageIO.h>
 
+#import <HCImage+BPG.h>
+
 #ifdef PIN_WEBP
 #import "PINImage+WebP.h"
 #endif
@@ -82,6 +84,11 @@ NSData * __nullable PINImagePNGRepresentation(PINImage * __nonnull image) {
     if ([data pin_isGIF]) {
         return [PINImage imageWithData:data];
     }
+
+    if ([data pin_isBPG]) {
+        return [UIImage imageWithBPGData:data];
+    }
+
 #ifdef PIN_WEBP
     if ([data pin_isWebP]) {
         return [PINImage pin_imageWithWebPData:data];

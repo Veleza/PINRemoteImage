@@ -24,6 +24,20 @@
     return NO;
 }
 
+- (BOOL)pin_isBPG
+{
+    const NSInteger length = 3;
+    Byte firstBytes[length];
+    if ([self length] >= length) {
+        [self getBytes:&firstBytes length:length];
+        //B, P, G
+        if (firstBytes[0] == 'B' && firstBytes[1] == 'P' && firstBytes[2] == 'G') {
+            return YES;
+        }
+    }
+    return NO;
+}
+
 #ifdef PIN_WEBP
 - (BOOL)pin_isWebP
 {
