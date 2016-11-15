@@ -24,6 +24,8 @@ Pod::Spec.new do |s|
   
   # Include optional FLAnimatedImage module
   s.default_subspecs = 'FLAnimatedImage'
+
+  s.dependency 'HCImage+BPG'
   
   ### Subspecs
   s.subspec 'Core' do |cs|
