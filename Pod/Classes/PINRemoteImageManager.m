@@ -8,6 +8,8 @@
 
 #import "PINRemoteImageManager.h"
 
+#include <CommonCrypto/CommonDigest.h>
+
 #if USE_FLANIMATED_IMAGE
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #endif
@@ -1413,11 +1415,10 @@ static dispatch_once_t sharedDispatchToken;
 
 #pragma mark - Helpers
 
-- (NSString*) sha256:(NSString*)clear
+- (NSString *) sha256:(NSString *)clear
 {
     const char *s = [clear cStringUsingEncoding:NSASCIIStringEncoding];
     NSData *keyData = [NSData dataWithBytes:s length:strlen(s)];
-
     uint8_t digest[CC_SHA256_DIGEST_LENGTH] = {0};
     CC_SHA256(keyData.bytes, keyData.length, digest);
     NSData *out = [NSData dataWithBytes:digest length:CC_SHA256_DIGEST_LENGTH];
