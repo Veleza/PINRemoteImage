@@ -217,7 +217,7 @@
 
 //Handle
 - (void)pin_setPlaceholderWithImage:(nullable PINImage *)image;
-- (void)pin_updateUIWithImage:(nullable PINImage *)image animatedImage:(nullable FLAnimatedImage *)animatedImage;
+- (void)pin_updateUIWithImage:(nullable PINImage *)image animatedImage:(nullable id)animatedImage;
 - (void)pin_clearImages;
 - (BOOL)pin_ignoreGIFs;
 

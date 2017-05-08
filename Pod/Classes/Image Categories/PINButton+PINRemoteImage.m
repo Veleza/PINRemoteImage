@@ -99,7 +99,7 @@
 #endif
 }
 
-- (void)pin_updateUIWithImage:(PINImage *)image animatedImage:(FLAnimatedImage *)animatedImage
+- (void)pin_updateUIWithImage:(PINImage *)image animatedImage:(id)animatedImage
 {
     if (image) {
 #if PIN_TARGET_IOS

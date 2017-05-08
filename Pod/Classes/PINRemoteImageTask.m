@@ -46,7 +46,7 @@
 - (void)callCompletionsWithQueue:(dispatch_queue_t)queue
                           remove:(BOOL)remove
                        withImage:(PINImage *)image
-                   animatedImage:(FLAnimatedImage *)animatedImage
+                   animatedImage:(id)animatedImage
                           cached:(BOOL)cached
                            error:(NSError *)error
 {

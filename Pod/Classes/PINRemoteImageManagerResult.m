@@ -11,7 +11,7 @@
 @implementation PINRemoteImageManagerResult
 
 + (instancetype)imageResultWithImage:(PINImage *)image
-                       animatedImage:(FLAnimatedImage *)animatedImage
+                       animatedImage:(id)animatedImage
                        requestLength:(NSTimeInterval)requestLength
                                error:(NSError *)error
                           resultType:(PINRemoteImageResultType)resultType
@@ -27,7 +27,7 @@
 }
 
 + (instancetype)imageResultWithImage:(PINImage *)image
-                       animatedImage:(nullable FLAnimatedImage *)animatedImage
+                       animatedImage:(nullable id)animatedImage
                        requestLength:(NSTimeInterval)requestLength
                                error:(NSError *)error
                           resultType:(PINRemoteImageResultType)resultType
@@ -44,7 +44,7 @@
 }
 
 - (instancetype)initWithImage:(PINImage *)image
-                animatedImage:(FLAnimatedImage *)animatedImage
+                animatedImage:(id)animatedImage
                 requestLength:(NSTimeInterval)requestLength
                         error:(NSError *)error
                    resultType:(PINRemoteImageResultType)resultType

@@ -10,7 +10,7 @@
 
 #import <ImageIO/ImageIO.h>
 
-#import <HCImage+BPG.h>
+#import "HCImage+BPG.h"
 
 #ifdef PIN_WEBP
 #import "PINImage+WebP.h"

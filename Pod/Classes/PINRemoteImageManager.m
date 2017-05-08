@@ -13,7 +13,7 @@
 #if USE_FLANIMATED_IMAGE
 #import <FLAnimatedImage/FLAnimatedImage.h>
 #endif
-#import <PINCache/PINCache.h>
+#import "PINCache.h"
 
 #import "PINRemoteImage.h"
 #import "PINRemoteLock.h"
@@ -552,8 +552,7 @@ static dispatch_once_t sharedDispatchToken;
                             typeof(self) strongSelf = weakSelf;
                             if (object) {
                                 PINImage *image = nil;
-#if USE_FLANIMATED_IMAGE
-                                FLAnimatedImage *animatedImage = nil;
+                                id animatedImage = nil;
                                 BOOL valid = [strongSelf handleCacheObject:cache
                                                                     object:object
                                                                        key:key
@@ -568,9 +567,7 @@ static dispatch_once_t sharedDispatchToken;
                                         [task callCompletionsWithQueue:strongSelf.callbackQueue remove:NO withImage:image animatedImage:animatedImage cached:YES error:nil];
                                         [strongSelf.tasks removeObjectForKey:key];
                                     [strongSelf unlock];
-                                } else
-#endif
-                                {
+                                } else {
                                     //Remove completion and try again
                                     typeof(self) strongSelf = weakSelf;
                                     [strongSelf lock];
