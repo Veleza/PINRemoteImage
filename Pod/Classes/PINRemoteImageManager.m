@@ -552,6 +552,7 @@ static dispatch_once_t sharedDispatchToken;
                             typeof(self) strongSelf = weakSelf;
                             if (object) {
                                 PINImage *image = nil;
+#if USE_FLANIMATED_IMAGE
                                 FLAnimatedImage *animatedImage = nil;
                                 BOOL valid = [strongSelf handleCacheObject:cache
                                                                     object:object
@@ -567,7 +568,9 @@ static dispatch_once_t sharedDispatchToken;
                                         [task callCompletionsWithQueue:strongSelf.callbackQueue remove:NO withImage:image animatedImage:animatedImage cached:YES error:nil];
                                         [strongSelf.tasks removeObjectForKey:key];
                                     [strongSelf unlock];
-                                } else {
+                                } else
+#endif
+                                {
                                     //Remove completion and try again
                                     typeof(self) strongSelf = weakSelf;
                                     [strongSelf lock];
@@ -736,7 +739,7 @@ static dispatch_once_t sharedDispatchToken;
 - (BOOL)earlyReturnWithOptions:(PINRemoteImageManagerDownloadOptions)options url:(NSURL *)url object:(id)object completion:(PINRemoteImageManagerImageCompletion)completion
 {
     PINImage *image = nil;
-    FLAnimatedImage *animatedImage = nil;
+    id animatedImage = nil;
     PINRemoteImageResultType resultType = PINRemoteImageResultTypeNone;
 
     BOOL allowEarlyReturn = !(PINRemoteImageManagerDownloadOptionsSkipEarlyCheck & options);
@@ -790,7 +793,7 @@ static dispatch_once_t sharedDispatchToken;
                       key:(NSString *)key
                   options:(PINRemoteImageManagerDownloadOptions)options
                  outImage:(PINImage **)outImage
-         outAnimatedImage:(FLAnimatedImage **)outAnimatedImage
+         outAnimatedImage:(id*)outAnimatedImage
 {
     NSAssert(object != nil, @"Object should not be nil.");
     if (object == nil) {
@@ -798,7 +801,7 @@ static dispatch_once_t sharedDispatchToken;
     }
   
     BOOL ignoreGIF = (PINRemoteImageManagerDownloadOptionsIgnoreGIFs & options) != 0;
-    FLAnimatedImage *animatedImage = nil;
+    id animatedImage = nil;
     PINImage *image = nil;
     if ([object isKindOfClass:[PINImage class]]) {
         image = (PINImage *)object;
@@ -853,7 +856,7 @@ static dispatch_once_t sharedDispatchToken;
             typeof(self) strongSelf = weakSelf;
             NSError *remoteImageError = error;
             NSUInteger cacheCost = 0;
-            FLAnimatedImage *animatedImage = nil;
+            id animatedImage = nil;
             PINImage *image = nil;
             BOOL skipDecode = (options & PINRemoteImageManagerDownloadOptionsSkipDecode) != 0;
             
@@ -1124,7 +1127,7 @@ static dispatch_once_t sharedDispatchToken;
     {
         typeof(self) strongSelf = weakSelf;
         PINImage *image;
-        FLAnimatedImage *animatedImage;
+        id animatedImage;
         NSError *error = nil;
         if (object == nil) {
             image = nil;
@@ -1152,7 +1155,7 @@ static dispatch_once_t sharedDispatchToken;
     
     id object = [self.cache.memoryCache objectForKey:cacheKey];
     PINImage *image;
-    FLAnimatedImage *animatedImage;
+    id animatedImage;
     NSError *error = nil;
     if (object == nil) {
         image = nil;
