@@ -18,12 +18,15 @@
 #define PINLog(args...)
 #endif
 
-#if __has_include(<FLAnimatedImage/FLAnimatedImage.h>)
+#define USE_FLANIMATED_IMAGE    0
+/*
+ * #if __has_include(<FLAnimatedImage/FLAnimatedImage.h>)
 #define USE_FLANIMATED_IMAGE    1
 #else
 #define USE_FLANIMATED_IMAGE    0
 #define FLAnimatedImage NSObject
 #endif
+*/
 
 #if PIN_TARGET_IOS
 #define PINImage     UIImage
