@@ -676,7 +676,7 @@ static dispatch_once_t sharedDispatchToken;
                          BOOL saveAsJPEG = (options & PINRemoteImageManagerSaveProcessedImageAsJPEG) != 0;
                          NSData *diskData = nil;
                          if (saveAsJPEG) {
-                             diskData = PINImageJPEGRepresentation(image, 1.0);
+                             diskData = PINImageJPEGRepresentation(image, 0.9);
                          } else {
                              diskData = PINImagePNGRepresentation(image);
                          }
